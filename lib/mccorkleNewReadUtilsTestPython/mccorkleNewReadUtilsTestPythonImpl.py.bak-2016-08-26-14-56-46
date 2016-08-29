@@ -6,9 +6,6 @@ import traceback
 import uuid
 from pprint import pprint, pformat
 from biokbase.workspace.client import Workspace as workspaceService
-from ReadsUtils.ReadsUtilsClient import ReadsUtils
-import os
-import pprint
 #END_HEADER
 
 
@@ -42,7 +39,6 @@ This sample module contains one small method - filter_contigs.
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
         self.workspaceURL = config['workspace-url']
-        self.callbackURL = os.environ['SDK_CALLBACK_URL']
         #END_CONSTRUCTOR
         pass
     
@@ -236,35 +232,6 @@ This sample module contains one small method - filter_contigs.
                              'returnVal is not type dict as required.')
         # return the results
         return [returnVal]
-
-    def upload_fastq(self, ctx, params):
-        """
-        :param params: instance of type "UploadFastqParams" (testing
-           invocation of ReadsUtils) -> structure: parameter "fwd_id" of
-           String, parameter "wsid" of Long, parameter "wsname" of String,
-           parameter "objid" of Long, parameter "name" of String, parameter
-           "rev_id" of String, parameter "sequencing_tech" of String
-        :returns: instance of type "UploadFastqObjref"
-        """
-        # ctx is the context object
-        # return variables are: objref
-        #BEGIN upload_fastq
-        print( "hai this is upload_fastq here, params are")
-        pprint.pprint( params )
-        ReadsUtils_instance = ReadsUtils(url=self.callbackURL, token=ctx['token'], service_ver='dev')
-        print( "got ReadsUtilsinstance")
-        method_retVal = ReadsUtils_instance.upload_reads( params )
-        print( "back from ReadsUtils_instance.upload_reads")
-        pprint( method_retVal )
-        objref = "Vooch"
-        #END upload_fastq
-
-        # At some point might do deeper type checking...
-        if not isinstance(objref, basestring):
-            raise ValueError('Method upload_fastq return value ' +
-                             'objref is not type basestring as required.')
-        # return the results
-        return [objref]
 
     def status(self, ctx):
         #BEGIN_STATUS

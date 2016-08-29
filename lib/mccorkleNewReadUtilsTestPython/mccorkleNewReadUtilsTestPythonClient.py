@@ -53,6 +53,19 @@ class mccorkleNewReadUtilsTestPython(object):
             'mccorkleNewReadUtilsTestPython.filter_contigs',
             [params], self._service_ver, context)
 
+    def upload_fastq(self, params, context=None):
+        """
+        :param params: instance of type "UploadFastqParams" (testing
+           invocation of ReadsUtils) -> structure: parameter "fwd_id" of
+           String, parameter "wsid" of Long, parameter "wsname" of String,
+           parameter "objid" of Long, parameter "name" of String, parameter
+           "rev_id" of String, parameter "sequencing_tech" of String
+        :returns: instance of type "UploadFastqObjref"
+        """
+        return self._client.call_method(
+            'mccorkleNewReadUtilsTestPython.upload_fastq',
+            [params], self._service_ver, context)
+
     def status(self, context=None):
         return self._client.call_method('mccorkleNewReadUtilsTestPython.status',
                                         [], self._service_ver, context)

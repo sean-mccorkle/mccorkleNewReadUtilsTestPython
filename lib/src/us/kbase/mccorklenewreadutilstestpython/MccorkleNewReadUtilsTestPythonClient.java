@@ -181,6 +181,23 @@ public class MccorkleNewReadUtilsTestPythonClient {
         return res.get(0);
     }
 
+    /**
+     * <p>Original spec-file function name: upload_fastq</p>
+     * <pre>
+     * </pre>
+     * @param   params   instance of type {@link us.kbase.mccorklenewreadutilstestpython.UploadFastqParams UploadFastqParams}
+     * @return   parameter "objref" of original type "UploadFastqObjref"
+     * @throws IOException if an IO exception occurs
+     * @throws JsonClientException if a JSON RPC exception occurs
+     */
+    public String uploadFastq(UploadFastqParams params, RpcContext... jsonRpcContext) throws IOException, JsonClientException {
+        List<Object> args = new ArrayList<Object>();
+        args.add(params);
+        TypeReference<List<String>> retType = new TypeReference<List<String>>() {};
+        List<String> res = caller.jsonrpcCall("mccorkleNewReadUtilsTestPython.upload_fastq", args, retType, true, true, jsonRpcContext, this.serviceVersion);
+        return res.get(0);
+    }
+
     public Map<String, Object> status(RpcContext... jsonRpcContext) throws IOException, JsonClientException {
         List<Object> args = new ArrayList<Object>();
         TypeReference<List<Map<String, Object>>> retType = new TypeReference<List<Map<String, Object>>>() {};

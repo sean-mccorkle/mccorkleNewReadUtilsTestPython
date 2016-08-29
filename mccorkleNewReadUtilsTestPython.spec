@@ -39,4 +39,30 @@ module mccorkleNewReadUtilsTestPython {
         Filter contigs in a ContigSet by DNA length
     */
     funcdef filter_contigs(FilterContigsParams params) returns (FilterContigsResults) authentication required;
+
+    /* testing invocation of ReadsUtils */
+
+    typedef structure {
+        string fwd_id;
+        int wsid;
+        string wsname;
+        int objid;
+        string name;
+        string rev_id;
+        string sequencing_tech;
+        /* boolean single_genome; */
+        /* KBaseCommon.StrainInfo strain; */
+        /* KBaseCommon.SourceInfo source; */
+        /* boolean interleaved; */
+        /* boolean read_orientation_outward; */
+        /* float insert_size_mean; */
+        /* float insert_size_std_dev; */
+    } UploadFastqParams;
+
+   
+    typedef string UploadFastqObjref;
+
+
+    funcdef upload_fastq( UploadFastqParams params) returns( UploadFastqObjref objref ) authentication required;
+
 };

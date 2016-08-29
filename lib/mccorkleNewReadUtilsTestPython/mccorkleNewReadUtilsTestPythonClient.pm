@@ -218,6 +218,106 @@ Filter contigs in a ContigSet by DNA length
     }
 }
  
+
+
+=head2 upload_fastq
+
+  $objref = $obj->upload_fastq($params)
+
+=over 4
+
+=item Parameter and return types
+
+=begin html
+
+<pre>
+$params is a mccorkleNewReadUtilsTestPython.UploadFastqParams
+$objref is a mccorkleNewReadUtilsTestPython.UploadFastqObjref
+UploadFastqParams is a reference to a hash where the following keys are defined:
+	fwd_id has a value which is a string
+	wsid has a value which is an int
+	wsname has a value which is a string
+	objid has a value which is an int
+	name has a value which is a string
+	rev_id has a value which is a string
+	sequencing_tech has a value which is a string
+UploadFastqObjref is a string
+
+</pre>
+
+=end html
+
+=begin text
+
+$params is a mccorkleNewReadUtilsTestPython.UploadFastqParams
+$objref is a mccorkleNewReadUtilsTestPython.UploadFastqObjref
+UploadFastqParams is a reference to a hash where the following keys are defined:
+	fwd_id has a value which is a string
+	wsid has a value which is an int
+	wsname has a value which is a string
+	objid has a value which is an int
+	name has a value which is a string
+	rev_id has a value which is a string
+	sequencing_tech has a value which is a string
+UploadFastqObjref is a string
+
+
+=end text
+
+=item Description
+
+
+
+=back
+
+=cut
+
+ sub upload_fastq
+{
+    my($self, @args) = @_;
+
+# Authentication: required
+
+    if ((my $n = @args) != 1)
+    {
+	Bio::KBase::Exceptions::ArgumentValidationError->throw(error =>
+							       "Invalid argument count for function upload_fastq (received $n, expecting 1)");
+    }
+    {
+	my($params) = @args;
+
+	my @_bad_arguments;
+        (ref($params) eq 'HASH') or push(@_bad_arguments, "Invalid type for argument 1 \"params\" (value was \"$params\")");
+        if (@_bad_arguments) {
+	    my $msg = "Invalid arguments passed to upload_fastq:\n" . join("", map { "\t$_\n" } @_bad_arguments);
+	    Bio::KBase::Exceptions::ArgumentValidationError->throw(error => $msg,
+								   method_name => 'upload_fastq');
+	}
+    }
+
+    my $url = $self->{url};
+    my $result = $self->{client}->call($url, $self->{headers}, {
+	    method => "mccorkleNewReadUtilsTestPython.upload_fastq",
+	    params => \@args,
+    });
+    if ($result) {
+	if ($result->is_error) {
+	    Bio::KBase::Exceptions::JSONRPC->throw(error => $result->error_message,
+					       code => $result->content->{error}->{code},
+					       method_name => 'upload_fastq',
+					       data => $result->content->{error}->{error} # JSON::RPC::ReturnObject only supports JSONRPC 1.1 or 1.O
+					      );
+	} else {
+	    return wantarray ? @{$result->result} : $result->result->[0];
+	}
+    } else {
+        Bio::KBase::Exceptions::HTTP->throw(error => "Error invoking method upload_fastq",
+					    status_line => $self->{client}->status_line,
+					    method_name => 'upload_fastq',
+				       );
+    }
+}
+ 
   
 sub status
 {
@@ -261,16 +361,16 @@ sub version {
             Bio::KBase::Exceptions::JSONRPC->throw(
                 error => $result->error_message,
                 code => $result->content->{code},
-                method_name => 'filter_contigs',
+                method_name => 'upload_fastq',
             );
         } else {
             return wantarray ? @{$result->result} : $result->result->[0];
         }
     } else {
         Bio::KBase::Exceptions::HTTP->throw(
-            error => "Error invoking method filter_contigs",
+            error => "Error invoking method upload_fastq",
             status_line => $self->{client}->status_line,
-            method_name => 'filter_contigs',
+            method_name => 'upload_fastq',
         );
     }
 }
@@ -468,6 +568,79 @@ n_initial_contigs has a value which is an int
 n_contigs_removed has a value which is an int
 n_contigs_remaining has a value which is an int
 
+
+=end text
+
+=back
+
+
+
+=head2 UploadFastqParams
+
+=over 4
+
+
+
+=item Description
+
+testing invocation of ReadsUtils
+
+
+=item Definition
+
+=begin html
+
+<pre>
+a reference to a hash where the following keys are defined:
+fwd_id has a value which is a string
+wsid has a value which is an int
+wsname has a value which is a string
+objid has a value which is an int
+name has a value which is a string
+rev_id has a value which is a string
+sequencing_tech has a value which is a string
+
+</pre>
+
+=end html
+
+=begin text
+
+a reference to a hash where the following keys are defined:
+fwd_id has a value which is a string
+wsid has a value which is an int
+wsname has a value which is a string
+objid has a value which is an int
+name has a value which is a string
+rev_id has a value which is a string
+sequencing_tech has a value which is a string
+
+
+=end text
+
+=back
+
+
+
+=head2 UploadFastqObjref
+
+=over 4
+
+
+
+=item Definition
+
+=begin html
+
+<pre>
+a string
+</pre>
+
+=end html
+
+=begin text
+
+a string
 
 =end text
 

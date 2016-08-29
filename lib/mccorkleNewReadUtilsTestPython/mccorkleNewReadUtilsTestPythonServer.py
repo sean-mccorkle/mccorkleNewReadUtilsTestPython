@@ -333,6 +333,10 @@ class Application(object):
                              name='mccorkleNewReadUtilsTestPython.filter_contigs',
                              types=[dict])
         self.method_authentication['mccorkleNewReadUtilsTestPython.filter_contigs'] = 'required'
+        self.rpc_service.add(impl_mccorkleNewReadUtilsTestPython.upload_fastq,
+                             name='mccorkleNewReadUtilsTestPython.upload_fastq',
+                             types=[dict])
+        self.method_authentication['mccorkleNewReadUtilsTestPython.upload_fastq'] = 'required'
         self.rpc_service.add(impl_mccorkleNewReadUtilsTestPython.status,
                              name='mccorkleNewReadUtilsTestPython.status',
                              types=[dict])

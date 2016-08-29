@@ -108,36 +108,4 @@ class mccorkleNewReadUtilsTestPythonTest(unittest.TestCase):
             self.getImpl().filter_contigs(self.getContext(), {'workspace': self.getWsName(), 
                 'contigset_id': 'fake', 'min_length': 'ten'})
         self.assertTrue('Cannot parse integer from min_length parameter' in str(context.exception))
-    
-    def test_upload_fastq_ok(self):
-        print( "Hai dis is test_upload_fastq_ok" )
-        #obj_name = "contigset.1"
-        #contig1 = {'id': '1', 'length': 10, 'md5': 'md5', 'sequence': 'agcttttcat'}
-        #contig2 = {'id': '2', 'length': 5, 'md5': 'md5', 'sequence': 'agctt'}
-        #contig3 = {'id': '3', 'length': 12, 'md5': 'md5', 'sequence': 'agcttttcatgg'}
-        #obj1 = {'contigs': [contig1, contig2, contig3], 'id': 'id', 'md5': 'md5', 'name': 'name', 
-        #        'source': 'source', 'source_id': 'source_id', 'type': 'type'}
-        #self.getWsClient().save_objects({'workspace': self.getWsName(), 'objects':
-        #    [{'type': 'KBaseGenomes.ContigSet', 'name': obj_name, 'data': obj1}]})
-        ret = self.getImpl().upload_fastq( self.getContext(), 
-                                           {  #'fwd_id':  'f04bbfa4-1ba2-4094-a631-ace45dd73c3a',
-                                             'fwd_id':  'd207f0d2-80ca-420d-bb63-0da2523e3a23',
-                                             'wsid': 'kb|ws.9196',
-                                             #string wsname;
-                                             #'objid': ???;
-                                             'name':  'myFirstReadsObjUpload',
-                                             'rev_id': 'no id',
-                                             'sequencing_tech': 'Ilumina'
-                                            }
-                                        )
-        print( "ret is ")
-        pprint( ret )
-        #obj2 = self.getWsClient().get_objects([{'ref': self.getWsName()+'/'+obj_name}])[0]['data']
-        #self.assertEqual(len(obj2['contigs']), 2)
-        #self.assertTrue(len(obj2['contigs'][0]['sequence']) >= 10)
-        #self.assertTrue(len(obj2['contigs'][1]['sequence']) >= 10)
-        #self.assertEqual(ret[0]['n_initial_contigs'], 3)
-        #self.assertEqual(ret[0]['n_contigs_removed'], 1)
-        #self.assertEqual(ret[0]['n_contigs_remaining'], 2)
-
-
+        

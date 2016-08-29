@@ -7,18 +7,17 @@ import uuid
 from pprint import pprint, pformat
 from biokbase.workspace.client import Workspace as workspaceService
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
-import os
 import pprint
 #END_HEADER
 
 
-class mccorkleNewReadUtilsTestPython:
+class mccorkleReadUtilsTestPython:
     '''
     Module Name:
-    mccorkleNewReadUtilsTestPython
+    mccorkleReadUtilsTestPython
 
     Module Description:
-    A KBase module: mccorkleNewReadUtilsTestPython
+    A KBase module: mccorkleReadUtilsTestPython
 This sample module contains one small method - filter_contigs.
     '''
 
@@ -29,8 +28,8 @@ This sample module contains one small method - filter_contigs.
     # the latter method is running.
     #########################################
     VERSION = "0.0.1"
-    GIT_URL = "https://github.com/sean-mccorkle/mccorkleNewReadUtilsTestPython.git"
-    GIT_COMMIT_HASH = "6a48ab1da38fe4ba186bb8306ff29c8a0542f192"
+    GIT_URL = "https://github.com/sean-mccorkle/mccorkleReadUtilsTestPython.git"
+    GIT_COMMIT_HASH = "ee641eb9dd857c49f3aed9bebe34c28cdf5df33d"
     
     #BEGIN_CLASS_HEADER
     # Class variables and functions can be defined in this block
@@ -251,11 +250,8 @@ This sample module contains one small method - filter_contigs.
         #BEGIN upload_fastq
         print( "hai this is upload_fastq here, params are")
         pprint.pprint( params )
-        ReadsUtils_instance = ReadsUtils(url=self.callbackURL, token=ctx['token'], service_ver='dev')
-        print( "got ReadsUtilsinstance")
-        method_retVal = ReadsUtils_instance.upload_reads( params )
-        print( "back from ReadsUtils_instance.upload_reads")
-        pprint( method_retVal )
+        #ReadsUtils_instance = ReadsUtils(url=self.callbackURL, token=ctx['token'])
+        #method_retVal = ReadsUtils_instance.upload_reads( params )
         objref = "Vooch"
         #END upload_fastq
 
